@@ -1,5 +1,3 @@
-Github 브랜치 보호 테스트
-
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
