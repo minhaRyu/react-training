@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import TextInput from "../ui/TextInput";
 import Button from "../ui/Button";
+import { usePostsState } from "../../globalState/_posts";
 
 const Wrapper = styled.div`
     padding: 16px;
@@ -25,6 +26,7 @@ const Container = styled.div`
 
 export default function PostWritePage(props) {
     const navigate = useNavigate();
+    const {posts, setPostsState, getNextId} = usePostsState();
 
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
@@ -51,6 +53,16 @@ export default function PostWritePage(props) {
                 <Button
                     title="글 작성하기"
                     onClick={() => {
+                        const id = getNextId();
+                        setPostsState([
+                            ...posts,
+                            {
+                                id,
+                                title,
+                                content,
+                                comments: []
+                            }
+                        ]);
                         navigate("/");
                     }}
                 />

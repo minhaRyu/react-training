@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import PostListItem from "./PostListItem";
+import { usePostsState } from "../../globalState/_posts";
 
 const Wrapper = styled.div`
     display: flex;
@@ -16,7 +17,8 @@ const Wrapper = styled.div`
 `;
 
 export default function PostList(props) {
-    const { posts, onClickItem } = props;
+    const {posts} = usePostsState();
+    const { onClickItem } = props;
 
     return (
         <Wrapper>
