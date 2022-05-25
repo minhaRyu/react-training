@@ -6,7 +6,7 @@ import styled from "styled-components";
 import CommentList from "../list/CommentList";
 import TextInput from "../ui/TextInput";
 import Button from "../ui/Button";
-import data from "../../data.json";
+import { usePostsState } from "../../globalState/_posts";
 
 const Wrapper = styled.div`
     padding: 16px;
@@ -53,7 +53,8 @@ function PostViewPage(props) {
     const navigate = useNavigate();
     const { postId } = useParams();
 
-    const post = data.find((item) => {
+    const {posts, setPostsState, getNextId} = usePostsState();
+    const post = posts.find((item) => {
         return item.id + '' === postId + '';
     });
 
@@ -86,6 +87,14 @@ function PostViewPage(props) {
                 <Button
                     title="댓글 작성하기"
                     onClick={() => {
+                        const id = getNextId();
+                        const copiedPosts = [...posts]
+                        const targetPostIndex = copiedPosts.findIndex(targetPost => targetPost === post)
+                        const copiedPost = { ...post, comments: [ ...post.comments ] };
+                        copiedPost.comments.push({ id, content: comment });
+                        copiedPosts.splice(targetPostIndex, 1, copiedPost);
+
+                        setPostsState(copiedPosts);
                         navigate("/");
                     }}
                 />
