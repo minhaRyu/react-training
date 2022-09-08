@@ -8,10 +8,11 @@ name: github action test
 
 on:
   pull_request:
-    types: [synchronize]
+    types: ["synchronize", "ready_for_review"]
 
 jobs:
   hello1:
+    if: ! github.event.pull_request.draft
     runs-on: ubuntu-latest
     steps:
       - run: echo 'Hello, GitHub Actions!'
