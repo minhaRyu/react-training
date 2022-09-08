@@ -1,9 +1,3 @@
-# 목표:
-# feature -> master draft로 생성
-# draft 상태에서는 test가 돌지 않음 (pull_request synchronize)
-# draft -> ready for review (이후)에서는 변경사항이 있으면(commit) test를 돌림
-
-# pull_request review_request_ 쓰면 각자한테 리뷰 요청했을때 slack 보낼수 있나???
 name: github action test
 
 on:
