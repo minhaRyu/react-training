@@ -6,7 +6,7 @@ on:
 
 jobs:
   hello1:
-    if: ! github.event.pull_request.draft
+    if: ${{ !github.event.pull_request.draft }}
     runs-on: ubuntu-latest
     steps:
-      - run: echo 'Hello, GitHub Actions!'
+      - run: echo 'Hello, GitHub Actions!' ${{ github.event.pull_request.draft }}
