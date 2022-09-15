@@ -1,0 +1,25 @@
+name: github action test
+
+on:
+  pull_request:
+    types: ["synchronize", "ready_for_review"]
+    branches: [dev, master]
+
+jobs:
+  hello1:
+    # draft가 아닌 경우에만 job을 돌림
+    if: ${{ !github.event.pull_request.draft }}
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo 'Hello, GitHub Actions!' ${{ github.event.pull_request.draft }}
+  hello2:
+    # draft가 아닌 경우에만 job을 돌림
+    if: ${{ !github.event.pull_request.draft }}
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo 'Hello, GitHub Actions!' ${{ github.event.pull_request.draft }}
+  hello3:
+    needs: [hello1, hello2]
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo 'Hello, GitHub Actions!' ${{ github.event.pull_request.draft }}
