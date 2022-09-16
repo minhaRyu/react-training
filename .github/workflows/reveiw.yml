@@ -2,7 +2,7 @@ name: github action test
 
 on:
   pull_request:
-    types: ["synchronize", "ready_for_review", "opened"]
+    types: ["synchronize", "ready_for_review", "opened", "reopened"]
     branches: [dev, master]
 
 jobs:
